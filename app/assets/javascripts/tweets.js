@@ -7,11 +7,16 @@ document.addEventListener("DOMContentLoaded", function() {
     $.ajax({
       url: this.getAttribute('action'),
       method: this.getAttribute('method'),
-      datatype: 'html',
+      dataType: "json",
       data: $(this).serialize()
     }).done(function(data){
       var newTweet= document.createElement('li')
-      newTweet.innerHTML = data
+      var newTweetMessage=document.createElement('p')
+      var newTweetTime=document.createElement('time')
+      newTweetMessage.innerHTML = data.message;
+      newTweetTime.innerHTML = data.created_at;
+      newTweet.append(newTweetMessage);
+      newTweet.append(newTweetTime);
       newTweet.className = 'tweet'
       var message = document.querySelector('#tweet_message');
       message.value = ""
@@ -19,7 +24,5 @@ document.addEventListener("DOMContentLoaded", function() {
       list.prepend(newTweet)
     })
   })
-
-
 
 });
