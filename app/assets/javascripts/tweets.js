@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     $.ajax({
       url: this.getAttribute('action'),
       method: this.getAttribute('method'),
-      datatype: 'html',
+      dataType: 'html',
       data: $(this).serialize()
     }).done(function(data){
       var newTweet= document.createElement('li')
